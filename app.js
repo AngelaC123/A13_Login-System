@@ -4,6 +4,8 @@ const port = 3000
 
 const app = express()
 
+require('./config/mongoose')
+
 app.get('/', (req, res) => {
   res.send(`This is a login system`)
 })
