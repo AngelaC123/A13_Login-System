@@ -8,6 +8,9 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
   const { email, password } = req.body
+
+  if (!email || !password) { return res.redirect('/') }
+
   return User.findOne({ email })
     .lean()
     .then(user => {
