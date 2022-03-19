@@ -17,7 +17,7 @@ app.set('view engine', 'hbs')
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(session({
   secret: 'id',
-  name: 'user',
+  name: 'userId',
   saveUninitialized: false,
   resave: true,
 }))

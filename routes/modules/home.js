@@ -4,12 +4,18 @@ const User = require('../../models/users')
 const session = require('express-session')
 
 router.get('/', (req, res) => {
-
-  if (req.session.user) {
-    const firstName = req.session.user
-    return res.render('welcome', { firstName })
-  }
-  res.render('index')
+  const id = req.session.userId
+  return User.findById(id)
+    .lean()
+    .then(user => {
+      if (id) {
+        console.log('authenticated')
+        return res.render('welcome', { user })
+      } else {
+        console.log('not authenticated')
+        return res.render('index')
+      }
+    })
 })
 
 router.post('/', (req, res) => {
@@ -25,7 +31,7 @@ router.post('/', (req, res) => {
       if (error) {
         return res.render('index', { email, password, error, wrongMsg })
       } else {
-        req.session.user = user.firstName
+        req.session.userId = user._id
         return res.redirect('/')
       }
     })
