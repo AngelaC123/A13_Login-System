@@ -1,6 +1,15 @@
 <div class="card col-5 mx-auto mt-5 ">
-  <div class="card-body mt-3 mb-4">
-    <h3 class="text-center mt-5 mb-4 ">Account Login</h3>
+  <div class="card-body mt-5 mb-4">
+    {{#if alert}}
+    <div>
+      <div class="alert alert-danger mt-4 mb-0 col-8 mx-auto" role="alert">
+        {{alert}}
+      </div>
+    </div>
+    {{/if}}
+    <h3 class="text-center mt-4 mb-4 ">Account Login</h3>
+
+
     <form class="col-8 mx-auto text-center" action="/" method="post">
       <input type="email" class="form-control form-control-lg mt-3 my-4" name="email" placeholder="Email" required
         value="{{email}}">
